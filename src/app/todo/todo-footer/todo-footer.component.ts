@@ -4,6 +4,7 @@ import * as fromFiltro from '../../filter/filter.actions';
 import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/app.reducers';
 import { Todo } from '../model/todo.model';
+import { LimpiarTodosCompletadosAction } from '../todo.actions';
 
 @Component({
   selector: 'app-todo-footer',
@@ -35,7 +36,12 @@ export class TodoFooterComponent implements OnInit {
 
 
   private contarTareasPendientes(todos: Todo[]): void {
-    this.tareasPendientes = todos.filter( todo => todo.completado === false ).length;
+    this.tareasPendientes = todos.filter(todo => todo.completado === false).length;
+  }
+
+  limpiarCompletados(): void {
+    const act = new LimpiarTodosCompletadosAction();
+    this.store.dispatch(act);
   }
 
 }

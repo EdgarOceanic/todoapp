@@ -62,6 +62,9 @@ export function todoReducer(state = estadoInicial, action: fromTodo.Acciones): T
       const borrarAct = action as fromTodo.BorrarTodoAction;
       return state.filter(item => item.id !== borrarAct.id);
 
+    case fromTodo.LIMPIAR_TODOS_COMPLETADOS:
+      return state.filter(elem => elem.completado === false);
+
   }
 
   return state;
